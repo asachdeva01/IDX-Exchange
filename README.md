@@ -35,12 +35,15 @@ IDX-Exchange/
 │   └── helpers/
 │       └── engineer_features.py       # Market condition, price tiers, DOM buckets, etc.
 │
+├── data/                              # Place your CSV datasets here (gitignored)
 ├── tableau/                           # Tableau workbooks (coming weeks 8-10)
 ├── .gitignore
 └── README.md
 ```
 
 The EDA notebook is the central piece — it imports helper functions from `data_cleaning`, `feature_engineering`, and its own `helpers/` so the narrative stays clean while the logic lives in reusable modules.
+
+> **Getting started:** Place your `priceratio.csv` and `newlistings.csv` files in the `data/` directory, then open the EDA notebook to run the analysis.
 
 ---
 

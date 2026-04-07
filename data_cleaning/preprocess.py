@@ -9,14 +9,10 @@ Loads the raw sold and listings datasets and applies all cleaning steps:
 This script is designed to be run standalone or imported by the EDA notebook.
 """
 import pandas as pd
-import sys
-import os
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
-from helpers.duplicates import drop_duplicate_columns
-from helpers.dates import parse_sold_dates, parse_listing_dates
-from helpers.missing import missing_value_report
+from data_cleaning.helpers.duplicates import drop_duplicate_columns
+from data_cleaning.helpers.dates import parse_sold_dates, parse_listing_dates
+from data_cleaning.helpers.missing import missing_value_report
 
 
 def preprocess_sold(df: pd.DataFrame) -> pd.DataFrame:

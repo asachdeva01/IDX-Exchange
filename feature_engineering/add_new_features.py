@@ -5,12 +5,8 @@ Adds all derived features to the sold and listings datasets.
 Designed to be run standalone or imported by the EDA notebook.
 """
 import pandas as pd
-import sys
-import os
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
-
-from helpers.engineer_features import (
+from feature_engineering.helpers.engineer_features import (
     add_market_condition,
     add_price_reduction_flags,
     add_dom_buckets,
