@@ -1,0 +1,40 @@
+# === AI Assistant Config ===
+CLAUDE.md
+.claude/
+
+# === IDX Exchange Data Protection ===
+# Never upload CSV data files from the API (including appended/combined versions)
+*.csv
+
+# Never upload proprietary API extraction scripts
+crmls_sold.py
+crmls_listed.py
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# === Jupyter Notebook ===
+.ipynb_checkpoints/
+
+# === Environment ===
+.env
+.venv/
+env/
+venv/
+
+# === OS ===
+.DS_Store
+Thumbs.db
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
