@@ -2,6 +2,9 @@
 CLAUDE.md
 .claude/
 
+# === Confidential Docs ===
+*.pdf
+
 # === IDX Exchange Data Protection ===
 # Never upload CSV data files from the API (including appended/combined versions)
 *.csv
