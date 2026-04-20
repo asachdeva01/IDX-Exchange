@@ -72,6 +72,18 @@ def price_tier_summary(sold: pd.DataFrame) -> pd.DataFrame:
     return stats
 
 
+def percentile_summary(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
+    """Generate a percentile distribution table for the specified numeric columns.
+
+    Returns min, 25th, median, mean, 75th, max, and count for each column.
+    This is the formal numeric distribution summary required by the Weeks 2-3 deliverable.
+    """
+    stats = df[columns].describe(percentiles=[0.25, 0.5, 0.75]).T
+    stats = stats[['count', 'min', '25%', '50%', 'mean', '75%', 'max']]
+    stats.columns = ['Count', 'Min', '25th', 'Median', 'Mean', '75th', 'Max']
+    return stats.round(2)
+
+
 def market_summary(sold: pd.DataFrame, listings: pd.DataFrame):
     """Print an overall market summary for the Tableau summary section."""
     print("=" * 60)

@@ -43,7 +43,7 @@ IDX-Exchange/
 
 The EDA notebook is the central piece — it imports helper functions from `data_cleaning`, `feature_engineering`, and its own `helpers/` so the narrative stays clean while the logic lives in reusable modules.
 
-> **Getting started:** Place your `priceratio.csv` and `newlistings.csv` files in the `data/` directory, then open the EDA notebook to run the analysis.
+> **Getting started:** Place your `priceratio.csv`, `newlistings.csv`, and `MORTGAGE30US.csv` files in the `data/` directory, then open the EDA notebook to run the analysis.
 
 ---
 
@@ -71,6 +71,7 @@ I built a modular preprocessing pipeline that handles the common data quality is
 - Parsing date fields (`CloseDate`, `ListingContractDate`) and deriving year-month keys for time-series analysis
 - Generating missing value reports to identify columns with high null rates
 - IQR-based outlier detection that flags extreme values without deleting records
+- Merging FRED 30-year fixed mortgage rates (weekly → monthly resampling) onto both datasets for rate-adjusted analysis
 
 ### Feature Engineering
 > [`feature_engineering/`](feature_engineering/)
