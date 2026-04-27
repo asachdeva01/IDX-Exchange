@@ -28,7 +28,10 @@ IDX-Exchange/
 │       ├── duplicates.py              # Drop duplicate columns from API extraction
 │       ├── dates.py                   # Parse date fields, create year-month features
 │       ├── missing.py                 # Missing value analysis and reporting
-│       └── outliers.py               # IQR-based outlier flagging and filtering
+│       ├── outliers.py               # IQR-based outlier flagging and filtering
+│       ├── mortgage_rates.py         # FRED mortgage rate loading and merging
+│       ├── validation.py             # Invalid numeric value flagging
+│       └── geographic.py             # Coordinate quality checks
 │
 ├── feature_engineering/               # Derived market metrics
 │   ├── add_new_features.py            # Entry point — engineers all features
@@ -72,6 +75,9 @@ I built a modular preprocessing pipeline that handles the common data quality is
 - Generating missing value reports to identify columns with high null rates
 - IQR-based outlier detection that flags extreme values without deleting records
 - Merging FRED 30-year fixed mortgage rates (weekly → monthly resampling) onto both datasets for rate-adjusted analysis
+- Date consistency validation — flagging records where listing, contract, or close dates violate logical ordering
+- Invalid numeric value detection — ClosePrice <= 0, LivingArea <= 0, negative DOM/bedrooms/bathrooms
+- Geographic coordinate checks — flagging missing, zero, positive longitude, and out-of-state records
 
 ### Feature Engineering
 > [`feature_engineering/`](feature_engineering/)

@@ -40,6 +40,38 @@ def add_dom_buckets(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+def add_timeline_durations(df: pd.DataFrame) -> pd.DataFrame:
+    """Compute listing-to-contract and contract-to-close durations in days.
+
+    - listing_to_contract_days: PurchaseContractDate - ListingContractDate
+    - contract_to_close_days:   CloseDate - PurchaseContractDate
+
+    Columns that don't exist are silently skipped.
+    """
+    added: list[str] = []
+
+    if 'PurchaseContractDate' in df.columns and 'ListingContractDate' in df.columns:
+        df['listing_to_contract_days'] = (
+            pd.to_datetime(df['PurchaseContractDate'], errors='coerce')
+            - pd.to_datetime(df['ListingContractDate'], errors='coerce')
+        ).dt.days
+        added.append('listing_to_contract_days')
+
+    if 'CloseDate' in df.columns and 'PurchaseContractDate' in df.columns:
+        df['contract_to_close_days'] = (
+            pd.to_datetime(df['CloseDate'], errors='coerce')
+            - pd.to_datetime(df['PurchaseContractDate'], errors='coerce')
+        ).dt.days
+        added.append('contract_to_close_days')
+
+    for col in added:
+        median_val = df[col].median()
+        mean_val = df[col].mean()
+        print(f"{col}: median={median_val:.0f} days, mean={mean_val:.1f} days")
+
+    return df
+
+
 def add_price_tiers(df: pd.DataFrame, price_col: str = 'ClosePrice') -> pd.DataFrame:
     """Segment transactions into price tiers."""
     df['price_tier'] = pd.cut(

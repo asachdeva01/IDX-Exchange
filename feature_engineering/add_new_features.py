@@ -11,6 +11,7 @@ from feature_engineering.helpers.engineer_features import (
     add_price_reduction_flags,
     add_dom_buckets,
     add_price_tiers,
+    add_timeline_durations,
 )
 
 
@@ -21,6 +22,7 @@ def engineer_sold_features(df: pd.DataFrame) -> pd.DataFrame:
     df = add_price_reduction_flags(df)
     df = add_dom_buckets(df)
     df = add_price_tiers(df, price_col='ClosePrice')
+    df = add_timeline_durations(df)
     return df
 
 

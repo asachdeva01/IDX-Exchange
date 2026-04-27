@@ -72,6 +72,37 @@ def price_tier_summary(sold: pd.DataFrame) -> pd.DataFrame:
     return stats
 
 
+def segment_summary(df: pd.DataFrame, group_col: str, top_n: int = 20) -> pd.DataFrame:
+    """Generate a market metrics summary grouped by any dimension.
+
+    Returns median close price, median PPSF, avg DOM, avg price ratio,
+    and transaction count for each segment value. Results are sorted by
+    volume and limited to top_n rows.
+    """
+    agg_cols: dict = {
+        'homes_sold': ('ClosePrice', 'count'),
+        'median_price': ('ClosePrice', 'median'),
+        'avg_dom': ('DaysOnMarket', 'mean'),
+        'avg_priceratio': ('priceratio', 'mean'),
+        'median_pricesqft': ('pricesqft', 'median'),
+    }
+
+    # Add timeline durations if they exist
+    if 'listing_to_contract_days' in df.columns:
+        agg_cols['median_listing_to_contract'] = ('listing_to_contract_days', 'median')
+    if 'contract_to_close_days' in df.columns:
+        agg_cols['median_contract_to_close'] = ('contract_to_close_days', 'median')
+
+    result = (df.groupby(group_col)
+              .agg(**agg_cols)
+              .sort_values('homes_sold', ascending=False)
+              .head(top_n))
+
+    print(f"\n=== Segment Summary by {group_col} (top {top_n}) ===")
+    print(result.to_string())
+    return result
+
+
 def percentile_summary(df: pd.DataFrame, columns: list[str]) -> pd.DataFrame:
     """Generate a percentile distribution table for the specified numeric columns.
 
