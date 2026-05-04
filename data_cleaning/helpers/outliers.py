@@ -1,3 +1,10 @@
+"""
+IQR-based outlier detection and filtering.
+
+Implements the tiered approach: flag extreme values first, then optionally
+produce a separate filtered analysis dataset rather than permanently
+deleting records.
+"""
 import pandas as pd
 import numpy as np
 
@@ -45,3 +52,42 @@ def filter_outliers(df: pd.DataFrame, columns: list, multiplier: float = 1.5) ->
     print(f"\nOriginal rows: {len(df):,} | After filtering: {len(filtered):,} "
           f"| Removed: {any_outlier.sum():,}")
     return filtered
+
+
+def compare_before_after(
+    df_before: pd.DataFrame,
+    df_after: pd.DataFrame,
+    columns: list[str],
+) -> pd.DataFrame:
+    """Generate a side-by-side comparison of size and median values before
+    and after outlier filtering.
+
+    Returns a DataFrame with rows for each column showing the before/after
+    median, mean, and overall row count change.
+    """
+    rows: list[dict] = []
+    for col in columns:
+        before = df_before[col].dropna()
+        after = df_after[col].dropna()
+        rows.append({
+            'Column': col,
+            'Median (Before)': round(before.median(), 2),
+            'Median (After)': round(after.median(), 2),
+            'Mean (Before)': round(before.mean(), 2),
+            'Mean (After)': round(after.mean(), 2),
+            'Max (Before)': round(before.max(), 2),
+            'Max (After)': round(after.max(), 2),
+        })
+
+    comparison = pd.DataFrame(rows).set_index('Column')
+
+    print("=" * 70)
+    print(f"OUTLIER FILTERING — BEFORE/AFTER COMPARISON")
+    print(f"  Rows before: {len(df_before):,}")
+    print(f"  Rows after:  {len(df_after):,}")
+    print(f"  Removed:     {len(df_before) - len(df_after):,} "
+          f"({(len(df_before) - len(df_after)) / len(df_before) * 100:.2f}%)")
+    print("=" * 70)
+    print(comparison.to_string())
+
+    return comparison

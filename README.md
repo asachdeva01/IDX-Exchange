@@ -73,7 +73,7 @@ I built a modular preprocessing pipeline that handles the common data quality is
 - Dropping duplicate columns created by API extraction quirks
 - Parsing date fields (`CloseDate`, `ListingContractDate`) and deriving year-month keys for time-series analysis
 - Generating missing value reports to identify columns with high null rates
-- IQR-based outlier detection that flags extreme values without deleting records
+- IQR-based outlier detection that flags extreme values without deleting records, then produces both a flagged (full) and filtered (clean) dataset for downstream analysis
 - Merging FRED 30-year fixed mortgage rates (weekly → monthly resampling) onto both datasets for rate-adjusted analysis
 - Date consistency validation — flagging records where listing, contract, or close dates violate logical ordering
 - Invalid numeric value detection — ClosePrice <= 0, LivingArea <= 0, negative DOM/bedrooms/bathrooms
@@ -88,6 +88,8 @@ I engineered the market metrics that power the Tableau dashboards:
 - **Price reduction tracking** — flagging and measuring listings that were reduced before closing
 - **DOM buckets** — segmenting days on market into actionable ranges (0-7, 8-14, 15-30, etc.)
 - **Price tiers** — grouping transactions by price segment to compare market dynamics across price points
+- **Timeline durations** — listing-to-contract days and contract-to-close days, derived from MLS date fields
+- **Segment analysis tables** — market metrics grouped by PropertySubType, CountyOrParish, ListOfficeName, and BuyerOfficeName for competitive intelligence
 
 <!-- Sections below will be added as work progresses -->
 
