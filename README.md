@@ -55,7 +55,7 @@ The EDA notebook is the central piece — it imports helper functions from `data
 ### Exploratory Analysis
 > [`exploratory_analysis/`](exploratory_analysis/)
 
-My first step was understanding the data I'd be working with. I combined 27+ months of sold and listing CSVs into unified datasets, then ran a full EDA covering:
+My first step was understanding the data I'd be working with. I combined 28 months (Jan 2024 – Apr 2026) of sold and listing CSVs — **414K closed transactions and 566K new listings** — into unified datasets, then ran a full EDA covering:
 
 - Schema inspection, data types, and missing value analysis across 100+ columns
 - Distribution analysis of key fields: ClosePrice, LivingArea, DaysOnMarket, price ratios

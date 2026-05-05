@@ -37,20 +37,42 @@ def flag_outliers(df: pd.DataFrame, column: str, multiplier: float = 1.5) -> pd.
 
 
 def filter_outliers(df: pd.DataFrame, columns: list, multiplier: float = 1.5) -> pd.DataFrame:
-    """Flag outliers for multiple columns and return a filtered copy excluding flagged rows.
+    """Flag outliers for multiple columns and return a clean filtered copy.
+
+    Two-stage filtering for the analysis-ready dataset:
+        1. Business-rule filter — drop rows with invalid values
+           (ClosePrice <= 0, LivingArea <= 0, DaysOnMarket < 0, NaN in any).
+        2. IQR filter — drop rows outside Tukey bounds for each column.
 
     The original DataFrame gets outlier flag columns added in place.
-    Returns a new DataFrame with outlier rows removed.
+    Returns a new DataFrame with both invalid and outlier rows removed.
     """
     for col in columns:
         df = flag_outliers(df, col, multiplier)
 
+    # Stage 1: business-rule filter — invalid values that IQR may not catch
+    business_rule_invalid = pd.Series(False, index=df.index)
+    for col in columns:
+        if col not in df.columns:
+            continue
+        series = df[col]
+        if col == 'DaysOnMarket':
+            business_rule_invalid |= series.isna() | (series < 0)
+        else:
+            business_rule_invalid |= series.isna() | (series <= 0)
+
+    # Stage 2: IQR outlier filter
     flag_cols = [f"{col}_outlier" for col in columns]
     any_outlier = df[flag_cols].any(axis=1)
 
-    filtered = df[~any_outlier].copy()
-    print(f"\nOriginal rows: {len(df):,} | After filtering: {len(filtered):,} "
-          f"| Removed: {any_outlier.sum():,}")
+    drop_mask = business_rule_invalid | any_outlier
+    filtered = df[~drop_mask].copy()
+
+    print(f"\nOriginal rows:        {len(df):,}")
+    print(f"  Invalid (rule):     {business_rule_invalid.sum():,}")
+    print(f"  IQR outliers:       {any_outlier.sum():,}")
+    print(f"  Combined removed:   {drop_mask.sum():,}")
+    print(f"After filtering:      {len(filtered):,}")
     return filtered
 
 
