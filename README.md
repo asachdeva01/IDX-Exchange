@@ -24,6 +24,7 @@ IDX-Exchange/
 │
 ├── data_cleaning/                     # Data preprocessing pipeline
 │   ├── preprocess.py                  # Entry point — runs all cleaning steps
+│   ├── geocode_missing.py             # Standalone script to recover missing coordinates
 │   └── helpers/
 │       ├── duplicates.py              # Drop duplicate columns from API extraction
 │       ├── dates.py                   # Parse date fields, create year-month features
@@ -31,14 +32,19 @@ IDX-Exchange/
 │       ├── outliers.py               # IQR-based outlier flagging and filtering
 │       ├── mortgage_rates.py         # FRED mortgage rate loading and merging
 │       ├── validation.py             # Invalid numeric value flagging
-│       └── geographic.py             # Coordinate quality checks
+│       ├── geographic.py             # Coordinate quality checks
+│       └── geocoding.py              # Address-to-coordinate recovery via Nominatim API
 │
 ├── feature_engineering/               # Derived market metrics
 │   ├── add_new_features.py            # Entry point — engineers all features
 │   └── helpers/
 │       └── engineer_features.py       # Market condition, price tiers, DOM buckets, etc.
 │
-├── data/                              # Place your CSV datasets here (gitignored)
+├── data/                              # Pipeline data (gitignored, only .gitkeep tracked)
+│   ├── input/                         # Raw inputs: priceratio.csv, newlistings.csv, MORTGAGE30US.csv
+│   ├── deliverables/                  # Phase outputs (proof of work for each handbook week)
+│   └── tableau/                       # Final datasets that feed the Tableau dashboards
+│
 ├── tableau/                           # Tableau workbooks (coming weeks 8-10)
 ├── .gitignore
 └── README.md
@@ -46,7 +52,7 @@ IDX-Exchange/
 
 The EDA notebook is the central piece — it imports helper functions from `data_cleaning`, `feature_engineering`, and its own `helpers/` so the narrative stays clean while the logic lives in reusable modules.
 
-> **Getting started:** Place your `priceratio.csv`, `newlistings.csv`, and `MORTGAGE30US.csv` files in the `data/` directory, then open the EDA notebook to run the analysis.
+> **Getting started:** Place your `priceratio.csv`, `newlistings.csv`, and `MORTGAGE30US.csv` files in `data/input/`, then open the EDA notebook to run the analysis.
 
 ---
 
@@ -78,6 +84,7 @@ I built a modular preprocessing pipeline that handles the common data quality is
 - Date consistency validation — flagging records where listing, contract, or close dates violate logical ordering
 - Invalid numeric value detection — ClosePrice <= 0, LivingArea <= 0, negative DOM/bedrooms/bathrooms
 - Geographic coordinate checks — flagging missing, zero, positive longitude, and out-of-state records
+- **Coordinate recovery via geocoding** — rather than imputing missing lat/lon with statistical placeholders (which distorts maps), the `geocode_missing.py` script recovers real coordinates by looking up the address through the OpenStreetMap Nominatim API. Results are cached locally to avoid repeat lookups.
 
 ### Feature Engineering
 > [`feature_engineering/`](feature_engineering/)
