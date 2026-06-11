@@ -41,3 +41,14 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# === Tableau =========
+tableau/*.twb Files/
+tableau/*.hyper
+# Packaged workbooks bundle the data extracts — don't commit them
+tableau/*.twbx
+# Tableau backup/recovery temp files
+tableau/.~*.twbr
+
+# === Reports (personal notes excluded) ===
+reports/Presentation_Script.md
