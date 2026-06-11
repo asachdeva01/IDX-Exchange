@@ -1,14 +1,21 @@
 # IDX Exchange — MLS Analytics Internship
 
-I'm working as a Data Analyst Intern at IDX Exchange, where I analyze real MLS transaction data from the California Regional Multiple Listing Service (CRMLS) to produce housing market intelligence. This repository contains the analytical work I've built throughout the program — from raw data exploration to interactive Tableau dashboards.
+I completed a 12-week Data Analyst Internship at IDX Exchange, analyzing real MLS transaction data from the California Regional Multiple Listing Service (CRMLS) to produce housing market intelligence. This repository contains the analytical work I built throughout the program — from raw data exploration through interactive Tableau dashboards published to Tableau Public.
+
+**Live dashboards:** [Tableau Public Profile](https://public.tableau.com/app/profile/abhi.sachdeva/vizzes)
 
 ---
 
 ## What This Project Is
 
-IDX Exchange runs a data pipeline that pulls monthly listing and sold transaction records from the CoreLogic Trestle API. I take those datasets — spanning January 2024 through the most recent month — and turn them into clean, enriched analytical datasets that power market analysis and competitive intelligence dashboards in Tableau.
+IDX Exchange runs a data pipeline that pulls monthly listing and sold transaction records from the CoreLogic Trestle API. I took those datasets — spanning **January 2024 through April 2026** (28 months) — and turned them into clean, enriched analytical datasets that power two Tableau workbooks: **market analysis** and **competitive intelligence**.
 
-**Stack:** Python (Pandas, NumPy, Matplotlib, Seaborn), Tableau Desktop
+**Stack:** Python (Pandas, NumPy, Matplotlib, Seaborn), Tableau Desktop Public Edition
+
+**Final Deliverables:**
+- Two published Tableau Public workbooks (6 dashboards in market analysis, 5 in competitive analysis)
+- 1-page Market Intelligence Report
+- 5-minute presentation walking through findings
 
 ---
 
@@ -29,39 +36,70 @@ IDX-Exchange/
 │       ├── duplicates.py              # Drop duplicate columns from API extraction
 │       ├── dates.py                   # Parse date fields, create year-month features
 │       ├── missing.py                 # Missing value analysis and reporting
-│       ├── outliers.py               # IQR-based outlier flagging and filtering
-│       ├── mortgage_rates.py         # FRED mortgage rate loading and merging
-│       ├── validation.py             # Invalid numeric value flagging
-│       ├── geographic.py             # Coordinate quality checks
-│       └── geocoding.py              # Address-to-coordinate recovery via Nominatim API
+│       ├── outliers.py                # IQR-based outlier flagging and filtering
+│       ├── mortgage_rates.py          # FRED mortgage rate loading and merging
+│       ├── validation.py              # Invalid numeric value flagging
+│       ├── geographic.py              # Coordinate quality checks
+│       └── geocoding.py               # Address-to-coordinate recovery via Nominatim API
 │
 ├── feature_engineering/               # Derived market metrics
 │   ├── add_new_features.py            # Entry point — engineers all features
 │   └── helpers/
 │       └── engineer_features.py       # Market condition, price tiers, DOM buckets, etc.
 │
+├── tableau/                           # Tableau workbooks (.twb XML configs only;
+│   ├── market_analysis.twb            # data extracts gitignored)
+│   └── competitve_analysis.twb
+│
+├── reports/                           # Final deliverables
+│   └── Market_Intelligence_Report.md  # 1-page summary of California market findings
+│
 ├── data/                              # Pipeline data (gitignored, only .gitkeep tracked)
 │   ├── input/                         # Raw inputs: priceratio.csv, newlistings.csv, MORTGAGE30US.csv
 │   ├── deliverables/                  # Phase outputs (proof of work for each handbook week)
 │   └── tableau/                       # Final datasets that feed the Tableau dashboards
 │
-├── tableau/                           # Tableau workbooks (coming weeks 8-10)
 ├── .gitignore
 └── README.md
 ```
 
 The EDA notebook is the central piece — it imports helper functions from `data_cleaning`, `feature_engineering`, and its own `helpers/` so the narrative stays clean while the logic lives in reusable modules.
 
-> **Getting started:** Place your `priceratio.csv`, `newlistings.csv`, and `MORTGAGE30US.csv` files in `data/input/`, then open the EDA notebook to run the analysis.
+> **Running the pipeline:** Place `priceratio.csv`, `newlistings.csv`, and `MORTGAGE30US.csv` in `data/input/`, then open the EDA notebook to run the analysis. CSV data is gitignored — the analytical code is what's public.
 
 ---
 
-## What I've Done
+## What I Built
+
+### Tableau Dashboards — Published on Tableau Public
+> [Tableau Public Profile](https://public.tableau.com/app/profile/abhi.sachdeva/vizzes)
+
+**[CRMLS Market Analysis — Jan 2024 to Apr 2026](https://public.tableau.com/app/profile/abhi.sachdeva/viz/CRMLSMarketAnalysisJan2024toApr2026/MonthlyMedianClosePrice)** — 6 dashboards covering statewide market dynamics:
+- Monthly Median Close Price
+- Average Days on Market
+- Average Close-to-List Price Ratio
+- New Listings per Month
+- Closed Sales per Month
+- Mortgage Rate vs Sales Volume (custom dashboard joining FRED MORTGAGE30US data)
+
+**[CRMLS Competitive Analysis — Jan 2024 to Apr 2026](https://public.tableau.com/app/profile/abhi.sachdeva/viz/CRMLSCompetitiveAnalysisJan2024toApr2026/Top100ListingOffices)** — 5 dashboards covering brokerage and agent landscape:
+- Top 100 Listing Offices
+- Top 100 Listing Agents
+- Top 100 Buyer Offices
+- ZIP Heat Map — Median Close Prices
+- ZIP Heat Map — Homes Sold
+
+All dashboards support filtering by **county, city, ZIP code, and property subtype**, with single-value dropdowns for fast drill-down. The competitive analysis defaults to Single Family Residence to match the dominant market segment.
+
+### Market Intelligence Report
+> [`reports/Market_Intelligence_Report.md`](reports/Market_Intelligence_Report.md)
+
+A 1-page summary of the California residential market over the reporting window, covering median price trends, days-on-market evolution, sold-to-list ratio dynamics, top brokerage concentration, and five key takeaways — including the finding that the late-2025 market softness decoupled from mortgage rate movements, suggesting non-rate factors (inventory accumulation, buyer fatigue) became the dominant driver.
 
 ### Exploratory Analysis
 > [`exploratory_analysis/`](exploratory_analysis/)
 
-My first step was understanding the data I'd be working with. I combined 28 months (Jan 2024 – Apr 2026) of sold and listing CSVs — **414K closed transactions and 566K new listings** — into unified datasets, then ran a full EDA covering:
+My first step was understanding the data. I combined 28 months (Jan 2024 – Apr 2026) of sold and listing CSVs — **414K closed transactions and 566K new listings** — into unified datasets, then ran a full EDA covering:
 
 - Schema inspection, data types, and missing value analysis across 100+ columns
 - Distribution analysis of key fields: ClosePrice, LivingArea, DaysOnMarket, price ratios
@@ -74,7 +112,7 @@ My first step was understanding the data I'd be working with. I combined 28 mont
 ### Data Cleaning
 > [`data_cleaning/`](data_cleaning/)
 
-I built a modular preprocessing pipeline that handles the common data quality issues in MLS data:
+A modular preprocessing pipeline that handles the common data quality issues in MLS data:
 
 - Dropping duplicate columns created by API extraction quirks
 - Parsing date fields (`CloseDate`, `ListingContractDate`) and deriving year-month keys for time-series analysis
@@ -84,12 +122,12 @@ I built a modular preprocessing pipeline that handles the common data quality is
 - Date consistency validation — flagging records where listing, contract, or close dates violate logical ordering
 - Invalid numeric value detection — ClosePrice <= 0, LivingArea <= 0, negative DOM/bedrooms/bathrooms
 - Geographic coordinate checks — flagging missing, zero, positive longitude, and out-of-state records
-- **Coordinate recovery via geocoding** — rather than imputing missing lat/lon with statistical placeholders (which distorts maps), the `geocode_missing.py` script recovers real coordinates by looking up the address through the OpenStreetMap Nominatim API. Results are cached locally to avoid repeat lookups.
+- **Coordinate recovery via geocoding** — rather than imputing missing lat/lon with statistical placeholders (which distorts maps), `geocode_missing.py` recovers real coordinates by looking up the address through the OpenStreetMap Nominatim API. Results are cached locally to avoid repeat lookups.
 
 ### Feature Engineering
 > [`feature_engineering/`](feature_engineering/)
 
-I engineered the market metrics that power the Tableau dashboards:
+The market metrics that power the Tableau dashboards:
 
 - **Market condition flags** — classifying each sale as Seller's or Buyer's Market based on price ratio
 - **Price reduction tracking** — flagging and measuring listings that were reduced before closing
@@ -98,19 +136,9 @@ I engineered the market metrics that power the Tableau dashboards:
 - **Timeline durations** — listing-to-contract days and contract-to-close days, derived from MLS date fields
 - **Segment analysis tables** — market metrics grouped by PropertySubType, CountyOrParish, ListOfficeName, and BuyerOfficeName for competitive intelligence
 
-<!-- Sections below will be added as work progresses -->
-
-<!--
-### Tableau Dashboards
-> `tableau/`
-
-### Market Intelligence Report
-> `reports/`
--->
-
 ---
 
-## Key Metrics I Work With
+## Key Metrics
 
 | Metric | What It Tells You |
 |--------|-------------------|
@@ -122,13 +150,4 @@ I engineered the market metrics that power the Tableau dashboards:
 
 ---
 
-## What's Coming
-
-This is an active 12-week program. As I progress, I'll be adding:
-
-- **Tableau dashboards** — interactive market analysis and competitive intelligence workbooks
-- **Market intelligence report** — a 1-page data-driven summary of a chosen California market
-
----
-
-*Built during the IDX Exchange Data Analyst Internship Program.*
+*Built during the IDX Exchange Data Analyst Internship — MLS Analytics & Tableau Dashboard Program.*
