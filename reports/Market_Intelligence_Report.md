@@ -6,54 +6,58 @@
 
 ## Market Overview
 
-The California residential market has settled into a **stable but cooling equilibrium** over the past 28 months. Median close prices held within a tight ~$780K–$860K band statewide, while the median time-to-sell drifted from ~19 days in mid-2024 to **~33 days by April 2026** — a sign that buyer urgency has eased even as prices held.
+The California residential market has **cooled significantly without correcting**. Median prices climbed **12.1%** over 28 months even as the typical home took **70% longer to sell** — a clear sign that buyer urgency has fallen far faster than seller pricing discipline.
 
-| Metric | Jan 2024 | Apr 2026 | Change |
-|--------|----------|----------|--------|
-| Median Close Price | ~$795K | ~$845K | **+6.3%** |
-| Avg. Days on Market | ~19 | ~33 | **+74%** |
-| 30-Yr Fixed Mortgage Rate | 6.6% | 6.4% | -20 bps |
+| Metric | Period Start | Period End | Change |
+|--------|--------------|------------|--------|
+| Median Close Price | $749,000 (Jan 2024) | $840,000 (Apr 2026) | **+12.1%** |
+| Avg. Days on Market | 19.6 (Jul 2024) | 33.4 (Sep 2025) | **+70.7%** |
+| 30-Yr Fixed Mortgage Rate | 6.64% (Jan 2024) | 6.42% (Apr 2026) | **-22 bps** |
+
+Days on Market peaked at **37.1 days in January 2025**, the highest reading of the period — a winter inventory pileup that has since partially worked through.
 
 ## Pricing Trends
 
-The **sold-to-list price ratio** is the clearest indicator of negotiating power. It peaked at **1.007** (above ask) in April 2024 during the spring buying surge, dropped to a low of **0.973** in late 2025 as mortgage rates pushed past 7%, and is now recovering toward **0.99** as rates moderate. **Buyers are now closing ~1% below ask on average**, vs. paying premiums two years ago.
+The **sold-to-list price ratio** peaked at **1.007** (homes selling above ask) in **May 2024** — coincident with the mortgage rate peak of 7.06%. This unusual alignment likely reflects buyers rushing to close before further rate hikes. The ratio then trended down through 2024–2025, bottoming at **0.973 in December 2025** and recovering to **0.989 by April 2026**. **Buyers today close about 1% below ask**, vs. paying premiums two years ago.
 
 ## Market Activity
 
-New listings and closed sales follow a **clear seasonal pattern** — peaks in late spring/early summer, deep troughs in December (driven by holiday inventory pullback). Notable observations:
+New listings and closed sales follow a **clear spring/winter cycle**:
 
-- **New listings** ranged 10,500–27,000/month, with December lows ~40% below summer peaks
-- **Closed sales** averaged ~14,500/month, ranging 10,500–18,500
-- Listing-to-sale ratio is **roughly 1.6:1** — meaning more homes are listed each month than sell, consistent with a market accumulating slack inventory
+- **New listings** ranged from **10,516 (Dec 2025)** to **26,695 (April 2025)** — a 2.5× swing
+- **Closed sales** ranged from **10,492 (Jan 2026)** to **18,474 (May 2024)** — peaking with the rate-spike rush
+- Listing-to-sale ratio runs roughly **1.6:1** — more homes are listed each month than sell, consistent with a market accumulating slack inventory
 
-## Competitive Landscape
+## Competitive Landscape (Single Family Residence)
 
-The CRMLS listing-side market is **highly concentrated at the top**, with two firms commanding outsized share:
+The CRMLS listing-side market is **highly concentrated**. Two firms account for **27.8% of total volume**:
 
-| Rank | Brokerage | ~Close Price | ~Units Sold |
-|------|-----------|--------------|-------------|
-| 1 | Compass | $45B | ~21,000 |
-| 2 | Coldwell Banker Realty | $28B | ~13,000 |
-| 3 | Berkshire Hathaway HomeServices | $7B | ~3,500 |
-| 4 | Keller Williams Realty | $7B | ~5,500 |
-| 5 | Intero Real Estate Services | $6B | ~3,500 |
+| Rank | Brokerage | Close Price | Units Sold |
+|------|-----------|-------------|------------|
+| 1 | Compass | $44.8B | 20,844 |
+| 2 | Coldwell Banker Realty | $25.0B | 13,052 |
+| 3 | Berkshire Hathaway HomeServices | $6.8B | 3,810 |
+| 4 | Keller Williams Realty | $6.6B | 5,792 |
+| 5 | Intero Real Estate Services | $6.3B | 3,407 |
 
-**Compass alone accounts for ~17% of total CRMLS listing volume** in this period — more than the next three competitors combined. The buy-side concentration mirrors this pattern, with NONMEMBER MRML (out-of-network buyer-agent transactions) ranking #5, indicating significant deal flow from agents outside the MLS network.
+**Compass alone represents 17.1% of total CRMLS volume — more closing dollars than the next three competitors combined.** The buyer-side mirrors this pattern: Compass leads with $40.9B / 19,544 units, with NONMEMBER MRML (out-of-network buyer-agent transactions) ranking #7 — a notable but not dominant source of out-of-network deal flow.
+
+**Notable individual:** The #1 listing agent in the SFR segment, **Bryan Van Zee**, closed **$1.0B in only 12 transactions** — averaging ~$84M per deal, indicating a pure luxury market specialist.
 
 ## Key Takeaways
 
-1. **The market has shifted from seller-favored to balanced.** Days on market nearly doubled, and sold-to-list ratio crossed below 1.0 — buyers have negotiating room they didn't have in 2024.
+1. **Cooling without correction.** Prices up 12% while time-to-sell rose 70%. Sellers are choosing to wait rather than discount.
 
-2. **Prices are sticky despite cooling activity.** A 74% jump in days on market did not translate into a price decline — sellers are willing to wait rather than discount, suggesting durable supply-side discipline.
+2. **May 2024 was the inflection point.** Mortgage rates AND the sold-to-list ratio both peaked simultaneously that month — likely a "rate-fear rush" by buyers locking in before further hikes.
 
-3. **Mortgage rate moves drove the cycle.** The 0.97 sold-to-list trough in late 2025 aligned with rates above 7%; recovery to 0.99 in 2026 tracks rates falling back to 6.4%. Rate sensitivity is now the dominant market driver.
+3. **The late-2025 ratio trough is NOT rate-driven.** Mortgage rates had already moderated below 6.5% by then. The 0.973 reading reflects accumulated inventory and buyer fatigue — meaningful because it decouples market softness from the Fed cycle.
 
-4. **Compass dominance is structural.** Compass leads on both the listing AND buyer side in every quarter of the reporting window — a position competitors have not been able to challenge despite the broader market cooling.
+4. **Compass dominance is structural, not cyclical.** Leads both sides — listing and buyer — across every quarter, growing share even as broader activity cooled.
 
-5. **Seasonality is more pronounced than the long-term trend.** The December activity drop (~40% below peak) is consistently larger than year-over-year price changes (~6% over 28 months). For real-time market reads, **month-over-month** is misleading; year-over-year is the right comparison.
+5. **Seasonality dwarfs the long-term trend.** Winter-to-spring activity swings (~150%) are roughly an order of magnitude larger than year-over-year price changes (~6%/year). For real-time market reads, year-over-year is the only honest comparison.
 
 ---
 
-*Dashboards: [Tableau Public Profile — Abhi Sachdeva](https://public.tableau.com/) | Code & methodology: [github.com/asachdeva01/IDX-Exchange](https://github.com/asachdeva01/IDX-Exchange)*
+*Dashboards: [Tableau Public Profile — Abhi Sachdeva](https://public.tableau.com/app/profile/abhi.sachdeva/vizzes) | Code & methodology: [github.com/asachdeva01/IDX-Exchange](https://github.com/asachdeva01/IDX-Exchange)*
 
-*Note: Reporting window ends April 2026, the latest fully-complete month at time of analysis. Mortgage rate data sourced from FRED MORTGAGE30US, resampled to monthly averages.*
+*Reporting window: January 2024 – April 2026. Mortgage rate data sourced from FRED MORTGAGE30US, resampled from weekly to monthly. Competitive landscape numbers reflect Single Family Residence filter; market trends reflect all property types.*
